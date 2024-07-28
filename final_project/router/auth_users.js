@@ -6,21 +6,11 @@ const regd_users = express.Router();
 let users = [];
 
 const isValid = (username)=>{ 
-    users.forEach(user => {
-        if (user.username === username) {
-            return false;
-        }
-    })
-    return true;
+    return !users.some(user => user.username === username);
 }
 
 const authenticatedUser = (username,password)=>{ 
-    users.forEach(user => {
-        if (user.username === username && user.password === password) {
-            return true;
-        }
-    })
-    return false;
+    return users.some(user => user.username === username && user.password === password);
 }
 
 regd_users.post("/login", (req,res) => {
@@ -37,7 +27,7 @@ regd_users.post("/login", (req,res) => {
         );
         req.session.authorization = {
             accessToken,
-            username;
+            username
         }
         return res.status(200).json({message: "User Logged in"});
 
