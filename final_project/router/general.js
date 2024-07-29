@@ -44,7 +44,6 @@ public_users.get('/author/:author',function (req, res) {
 });
 
 public_users.get('/title/:title',function (req, res) {
-  //Write your code here
   const title = req.params.title;
   for (let [num, book] of Object.entries(books)) {
     if (book["title"] === title) {
