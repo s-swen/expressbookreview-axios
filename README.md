@@ -11,22 +11,7 @@ This project is an **Express.js** based RESTful API for managing book reviews. I
 - **Review System**: Users can submit and manage book reviews.
 - **Axios Integration**: Demonstrates the use of Axios for HTTP requests.
 
-## Project Structure
-expressbookreview-axios-main/
-│
-├── final_project/
-│ ├── index.js # Main entry point for the Express server
-│ ├── package.json # Project dependencies and scripts
-│ ├── package-lock.json # Lockfile for dependencies
-│ ├── router/
-│ │ ├── auth_users.js # Routes for user authentication
-│ │ ├── booksdb.js # Routes for book-related operations
-│ │ └── general.js # General routes and middlewares
-│ └── README.md # Project-specific documentation
-│
-├── .gitignore # Files and directories to be ignored by git
-├── LICENSE # Project license
-└── README.md # Project overview and instructions (You are reading this)
+
 
 ## Installation
 
