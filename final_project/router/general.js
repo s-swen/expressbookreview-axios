@@ -2,6 +2,7 @@ const express = require('express');
 let books = require("./booksdb.js");
 let isValid = require("./auth_users.js").isValid;
 let users = require("./auth_users.js").users;
+let axios = require('axios').default;
 const public_users = express.Router();
 
 
@@ -22,14 +23,20 @@ public_users.post("/register", (req,res) => {
         return res.status(404).send("User already exists");
     }
 });
-public_users.get('/', async function(req, res) {
+
+const getAllBooks = () => {
+    return books;
+};
+
+public_users.get('/', async (req, res) => {
     try {
-        const response = await axios.get('https://localhost:3000/');
-        return res.status(200).send(JSON.stringify(books, null, 4));
+        const allBooks = await getAllBooks();
+        return res.status(200).send(JSON.stringify(allBooks, null, 4));
     } catch (err) {
-        return res.stauts(500).send("Error fetching book list");
+        return res.status(500).send(err.message);
     }
-})
+
+});
 
 public_users.get('/isbn/:isbn',function (req, res) {
   const isbn = req.params.isbn;
