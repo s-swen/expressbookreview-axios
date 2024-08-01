@@ -22,10 +22,14 @@ public_users.post("/register", (req,res) => {
         return res.status(404).send("User already exists");
     }
 });
-
-public_users.get('/',function (req, res) {
-  return res.status(200).send(JSON.stringify(books, null, 4));
-});
+public_users.get('/', async function(req, res) {
+    try {
+        const response = await axios.get('https://localhost:3000/');
+        return res.status(200).send(JSON.stringify(books, null, 4));
+    } catch (err) {
+        return res.stauts(500).send("Error fetching book list");
+    }
+})
 
 public_users.get('/isbn/:isbn',function (req, res) {
   const isbn = req.params.isbn;
